@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html data-ng-app="spacetimeApp">
+<head>
+    <title>SpaceTime</title>
+    <link rel="stylesheet" type="text/css" href="content/app.css" />
+    <!-- <script type="text/javascript" src="gph/build/graph-min.js"></script> -->
+    
+    <script type="text/javascript" src="gph/webgl-frameworks/Three.js"></script>
+    
+    <script type="text/javascript" src="gph/Graph.js"></script>
+    <script type="text/javascript" src="gph/drawings/simple_graph.js"></script>
+    <script type="text/javascript" src="gph/layouts/force-directed-layout.js"></script>
+    
+    <script type="text/javascript" src="gph/utils/Label.js"></script>
+    <script type="text/javascript" src="gph/utils/ObjectSelection.js"></script>
+    <script type="text/javascript" src="gph/utils/requestAnimationFrame.js"></script>
+    <script type="text/javascript" src="gph/utils/Stats.js"></script>
+    <script type="text/javascript" src="gph/utils/threejs-interaction.js"></script>
+
+    
+    
+</head>
+<body onload="createDrawing();">
+
+<div id="content">
+    <ul class="button-list">
+		<li><a href="/" class="button" onclick="return false;">Home</a></li>
+		<li><a href="/graph.html" class="button" onclick="return false;">Graph</a></li>
+	</ul>
+</div>
+
+    <script type="text/javascript">
+      var drawing;
+      function createDrawing() {
+        var index = parseInt(location.search.split("?")[1]);
+        if(isNaN(index)) {
+          index = 1;
+        }
+        /* Change these values to draw more nodes (numNodes) */
+        switch(index) {
+          case 0:
+            drawing = new Drawing.SimpleGraph({layout: '2d', selection: false, numNodes: 50, showStats: true, showInfo: true});
+            break;
+          case 1:
+            drawing = new Drawing.SimpleGraph({layout: '3d', selection: true, numNodes: 60, graphLayout:{attraction: 5, repulsion: 0.5}});
+            break;
+          case 2:
+            drawing = new Drawing.SphereGraph({numNodes: 50, showStats: true, showInfo: true});
+            break;
+          default:
+            drawing = new Drawing.SimpleGraph({layout: '3d', selection: true, numNodes: 50, showStats: true, showInfo: true});
+        }
+      }
+    </script>
+
+</body>
+</html>
