@@ -1,4 +1,4 @@
 leap_graph
 ==========
 
-Leap Motion Graph Explorer
+Leap Motion Graph Explorer v1.0
